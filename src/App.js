@@ -11,8 +11,8 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" exact component={ProductListing} />
-          <Route path="/product/:productId" component={ProductDetails} />
+          <Route path="/" element={<ProductListing />} />
+          <Route path="/product/:productId" element={<ProductDetails />} />
           <Route>404 Not Found!</Route>
         </Routes>
       </Router>

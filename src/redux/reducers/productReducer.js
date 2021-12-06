@@ -4,9 +4,14 @@ const initialState = {
     products: [
         {
             id: 0,
-            name: 'Numan',
+            name: 'lalit',
             category: 'Developer'
-        }
+        },
+        {
+            id: 1,
+            name: 'lalit',
+            category: 'Developer'
+        },
     ]
 }
 
