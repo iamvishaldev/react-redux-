@@ -1,36 +1,36 @@
 import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+
 
 function ProductComponent() {
-
     const ProductList = useSelector((state) => state.allProducts.products)
-    const { id, name } = ProductList[0]
 
-    useEffect(() => {
-        fetchProducts()
-    }, [])
-
-    const fetchProducts = async () => {
-        const result = await axios.get('https://fakestoreapi.com/products')
-            .catch(
-                (error) =>
-                    console.log('fetchProducts', error)
-            )
-        console.log(result)
-    }
+    const renderProductList = ProductList.map((currentProduct) => {
+        const { category, description, id, title, rating, price, image } = currentProduct
+        return (
+            <div className="four wide column" key={id}>
+                <Link to={`/product/${id}`}>
+                    <div className="ui link cards">
+                        <div className="card">
+                            <div className="image">
+                                <img src={image} alt={title} />
+                            </div>
+                            <div className="content">
+                                <div className="header">{title}</div>
+                                <div className="meta price">${price}</div>
+                                <div className="meta">${category}</div>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+        )
+    })
 
     return (
-        <div className="four column wide">
-            <div className="ui link cards">
-                <div className="card">
-                    <div className="image"></div>
-                    <div className="content">
-                        <div className="header">{name}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <>{renderProductList}</>
     )
 }
 
